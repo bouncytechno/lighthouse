@@ -1,0 +1,13 @@
+Generated using the built-in image generation tool.
+
+spiral-stair.png
+Use case: photorealistic-natural. Asset type: room image for a tiny lighthouse text adventure. Create one standalone landscape image, 3:2 aspect ratio. Interior of an old coastal lighthouse: an iron spiral staircase coils around a salt-stained stone pillar, warm lamplight through an open arch, steps descending out of view. Cinematic realistic photography, blue-hour stormy coastal atmosphere, muted deep blue-grey stone and sea with warm amber lamplight, tactile weathered materials, clear readable scene. No people, text, labels, borders, collage, or interface.
+
+lamp-room.png
+Use case: photorealistic-natural. Asset type: room image for a tiny lighthouse text adventure. Create one standalone landscape image, 3:2 aspect ratio. Inside the lantern room of an old coastal lighthouse: a great glass Fresnel lens glowing golden, curved windows overlooking dark ocean, a stone arch and an open floor hatch with an iron ladder. Cinematic realistic photography, blue-hour stormy coastal atmosphere, muted deep blue-grey stone and sea with warm amber lamplight, tactile weathered materials, clear readable scene. No people, text, labels, borders, collage, or interface.
+
+keepers-kitchen.png
+Use case: photorealistic-natural. Asset type: room image for a tiny lighthouse text adventure. Create one standalone landscape image, 3:2 aspect ratio. The tiny keeper's kitchen inside an old coastal lighthouse: copper kettle on a cold cast iron stove, a loaf of bread, worn stone walls, stairs rising and an open door revealing wet coastal rocks. Cinematic realistic photography, blue-hour stormy coastal atmosphere, muted deep blue-grey stone and sea with warm amber lamplight, tactile weathered materials, clear readable scene. No people, text, labels, borders, collage, or interface.
+
+rocks.png
+Use case: photorealistic-natural. Asset type: room image for a tiny lighthouse text adventure. Create one standalone landscape image, 3:2 aspect ratio. At the foot of an old coastal lighthouse: glistening black rocks and white breaking surf, an iron ladder climbing the lighthouse wall to the glowing lamp room, an open kitchen door at ground level. Cinematic realistic photography, blue-hour stormy coastal atmosphere, muted deep blue-grey stone and sea with warm amber lamplight, tactile weathered materials, clear readable scene. No people, text, labels, borders, collage, or interface.

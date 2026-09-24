@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Last Light · A lighthouse adventure</title>
+  <style>
+    :root { color-scheme: dark; font-family: Georgia, 'Times New Roman', serif; background: #101e26; color: #e9e7dc; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 32px 20px; background: radial-gradient(ellipse at top right, #314244 0, #101e26 65%); }
+    main { width: min(100%, 740px); }
+    .eyebrow, .label, footer, button, .map { font-family: system-ui, sans-serif; }
+    .eyebrow { color: #d8b778; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; }
+    h1 { font-size: clamp(40px, 8vw, 66px); font-weight: normal; margin: 14px 0; }
+    .intro { color: #a7b6b9; margin-bottom: 40px; line-height: 1.6; }
+    .game { border-top: 1px solid #54615f; border-bottom: 1px solid #54615f; padding: 30px 0; display: grid; grid-template-columns: 1fr 220px; gap: 32px; }
+    .label { text-transform: uppercase; letter-spacing: .17em; font-size: 10px; color: #a7b6b9; }
+    h2 { font-size: 30px; font-weight: normal; margin: 12px 0 18px; }
+    #room-image { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; margin: 0 0 20px; border-radius: 4px; background: #1a2b32; }
+    #description { font-size: 18px; line-height: 1.75; margin: 0; }
+    #exits { color: #d8b778; font-family: system-ui, sans-serif; font-size: 13px; line-height: 1.7; margin-top: 24px; }
+    .map { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 12px; }
+    .map div { min-height: 84px; border: 1px solid #54615f; padding: 12px 8px; display: grid; place-content: center; text-align: center; font-size: 11px; line-height: 1.5; color: #a7b6b9; }
+    .map div[aria-current="location"] { background: #d8b778; border-color: #d8b778; color: #15252d; }
+    .map span { display: block; font-size: 9px; margin-top: 5px; text-transform: uppercase; letter-spacing: .06em; }
+    .controls { display: grid; grid-template-columns: repeat(3, 44px); gap: 6px; justify-content: center; margin-top: 24px; }
+    button { min-height: 42px; border: 1px solid #65716d; border-radius: 4px; background: #1a2b32; color: #e9e7dc; font-size: 20px; cursor: pointer; }
+    button:hover { background: #33464b; }
+    button:focus-visible { outline: 2px solid #d8b778; outline-offset: 3px; }
+    button[data-direction="north"] { grid-column: 2; }
+    button[data-direction="west"] { grid-column: 1; }
+    #message { min-height: 44px; color: #d8b778; font-size: 15px; line-height: 1.5; margin-top: 22px; }
+    footer { color: #a7b6b9; font-size: 12px; line-height: 1.7; }
+    @media (max-width: 580px) { .game { grid-template-columns: 1fr; } .map div { min-height: 65px; } .intro { margin-bottom: 24px; } }
+    body { --accent: #99c7d5; --room-glow: #314b5c; }
+    body[data-room-theme="spiral-stair"] { --accent: #c5b4dd; --room-glow: #40354f; }
+    body[data-room-theme="lamp-room"] { --accent: #f3cc7e; --room-glow: #64502b; }
+    body[data-room-theme="keepers-kitchen"] { --accent: #dca68a; --room-glow: #584038; }
+    body { background: #101e26; position: relative; isolation: isolate; }
+    body::before { content: ''; position: fixed; inset: 0; z-index: -1; background: radial-gradient(ellipse at top right, var(--room-glow), transparent 75%); transition: background 350ms ease; pointer-events: none; }
+    .eyebrow, #exits, #message { color: var(--accent); }
+    .map div[aria-current="location"] { background: var(--accent); border-color: var(--accent); }
+    .map div[data-room="0,0"] { border-top: 3px solid #c5b4dd; }
+    .map div[data-room="1,0"] { border-top: 3px solid #f3cc7e; }
+    .map div[data-room="0,1"] { border-top: 3px solid #dca68a; }
+    .map div[data-room="1,1"] { border-top: 3px solid #99c7d5; }
+    #room-mood { color: var(--accent); font: italic 14px Georgia, serif; margin: -6px 0 18px; }
+    @media (prefers-reduced-motion: reduce) { body::before { transition: none; } }
+  </style>
+  <script src="game.js" defer></script>
+</head>
+<body data-room-theme="rocks">
+  <main>
+    <header><div class="eyebrow">A tiny text adventure</div><h1>The Last Light</h1><p class="intro">One lighthouse. Four rooms. An ocean that never sleeps.</p></header>
+    <div class="game">
+      <section aria-label="Current room" aria-live="polite" aria-atomic="true">
+        <div class="label">You are here</div>
+        <h2 id="room-name">Rocks</h2>
+        <p id="room-mood">Cold, wild and exposed</p>
+        <img id="room-image" src="images/rocks.png" alt="Wet black rocks below a lighthouse with a glowing lamp and open kitchen door." width="1536" height="1024">
+        <p id="description">Black rocks glisten beneath your feet as white surf breaks against the lighthouse. To the north, a narrow iron ladder reaches the lamp room, while a western door opens into the keeper's kitchen.</p>
+        <p id="exits">You can go: North ↑ · West ←</p>
+      </section>
+      <aside aria-label="Map and movement">
+        <div class="label">Lighthouse map · North ↑</div>
+        <div class="map" aria-label="Two by two room map">
+          <div data-room="0,0">Spiral Stair<span></span></div>
+          <div data-room="1,0">Lamp Room<span></span></div>
+          <div data-room="0,1">Keeper's Kitchen<span></span></div>
+          <div data-room="1,1" aria-current="location">Rocks<span>You are here</span></div>
+        </div>
+        <nav class="controls" aria-label="Move">
+          <button type="button" data-direction="north" aria-label="Go north">↑</button>
+          <button type="button" data-direction="west" aria-label="Go west">←</button>
+          <button type="button" data-direction="south" aria-label="Go south">↓</button>
+          <button type="button" data-direction="east" aria-label="Go east">→</button>
+        </nav>
+      </aside>
+    </div>
+    <p id="message" role="status" aria-live="polite"></p>
+    <footer>Explore with your arrow keys, or tap the arrows above.</footer>
+    <noscript>This adventure needs JavaScript enabled to move between rooms.</noscript>
+  </main>
+</body>
+</html>
